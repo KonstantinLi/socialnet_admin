@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>
+        Статистика
+    </title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<div id="app">
+    <div class="main-layout">
+        <div th:replace="~{fragments/sidebar :: sidebar}">
+        </div>
+        <div class="main-layout__main">
+            <header th:replace="~{fragments/header :: header}">
+            </header>
+            <main class="main-layout__page">
+                <h2 class="admin__title admin__title-statistic">
+                    Статистика
+                </h2>
+                <div class="statistic-block">
+                    <div class="statistic-block__content">
+                        <div class="statistic-block__content-main">
+                            <h3 class="statistic-block__content-title">
+                                Количество зарегистрированных пользователей по странам:
+                            </h3>
+                            <div class="statistic-block__countries"  th:each="countriesWithUsers : ${countriesWithUsers}">
+                                <span class="statistic-block__content-text" th:text="${countriesWithUsers.region + ': '}">
+                                </span>
+                                <span class="statistic-block__content-text" th:text="${countriesWithUsers.countUsers}">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="statistic-block">
+                    <div class="statistic-block__content">
+                        <div class="statistic-block__content-main">
+                            <h3 class="statistic-block__content-title">
+                                Количество зарегистрированных пользователей по городам:
+                            </h3>
+                            <div class="statistic-block__countries"  th:each="citiesWithUsers : ${citiesWithUsers}">
+                                <span class="statistic-block__content-text" th:text="${citiesWithUsers.region + ': '}">
+                                </span>
+                                <span class="statistic-block__content-text" th:text="${citiesWithUsers.countUsers}">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="statistic-block">
+                    <div class="statistic-block__content">
+                        <div class="statistic-block__content-main">
+                            <h3 class="statistic-block__content-title">
+                                Общее количество пользователей:
+                            </h3>
+                            <p class="statistic-block__content-text" th:text="${countUsers}">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="statistic-block">
+                    <div class="statistic-block__content">
+                        <div class="statistic-block__content-main">
+                            <h3 class="statistic-block__content-title">
+                                Общее количество постов:
+                            </h3>
+                            <p class="statistic-block__content-text" th:text="${countPosts}">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

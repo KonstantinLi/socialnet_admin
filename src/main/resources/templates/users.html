@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>
+        Люди
+    </title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<div id="app">
+    <div class="main-layout">
+        <div th:replace="~{fragments/sidebar :: sidebar}">
+        </div>
+        <div class="main-layout__main">
+            <header th:replace="~{fragments/header :: header}">
+            </header>
+            <main class="main-layout__page">
+                <div class="admin-users inner-page admin">
+                    <h2 class="admin__title">
+                        Люди
+                    </h2>
+                    <form th:action="@{/users}" th:object="${FindPersonRq}" method="get">
+                        <div class="search-filter">
+                            <div class="search-filter__block name">
+                                <label for="search-people-name" class="search__label">
+                                    Имя:
+                                </label>
+                                <input th:field="*{first_name}" id="search-people-name" type="text" class="search__input">
+                            </div>
+                            <div class="search-filter__block lastname">
+                                <label for="search-people-lastname" class="search__label">
+                                    Фамилия:
+                                </label>
+                                <input th:field="*{last_name}" id="search-people-lastname" class="search__input">
+                            </div>
+                            <div class="search-filter__block age">
+                                <label class="search__label">
+                                    Возраст:
+                                </label>
+                                <div class="search__row">
+                                    <select class="select search-filter__select" th:field="*{age_from}">
+                                        <option value="">
+                                            От
+                                        </option>
+                                        <option value="5">
+                                            От 5
+                                        </option>
+                                        <option value="15">
+                                            От 15
+                                        </option>
+                                        <option value="30">
+                                            От 30
+                                        </option>
+                                        <option value="45">
+                                            От 45
+                                        </option>
+                                    </select>
+                                    <span class="search-defis">
+                                    —
+                                </span>
+                                    <select class="select search-filter__select" th:field="*{age_to}">
+                                        <option value="">
+                                            До
+                                        </option>
+                                        <option value="30">
+                                            До 30
+                                        </option>
+                                        <option value="45">
+                                            До 45
+                                        </option>
+                                        <option value="60">
+                                            До 60
+                                        </option>
+                                        <option value="80">
+                                            До 80
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="search-filter__block region"><label class="search__label">Регион:</label>
+                                <div class="search__row">
+                                    <div class="search-field search" loadingtimeout="2000">
+                                        <input value="" th:field="*{country}" placeholder="Страна"
+                                               class="search-field__input search__input">
+                                    </div>
+                                    <span class="search-defis">
+                                </span>
+                                    <div class="search-field search _disabled" loadingtimeout="2000">
+                                        <input value="" th:field="*{city}" placeholder="Город"
+                                               class="search-field__input search__input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="search-filter__block">
+                                <label class="search__label">
+                                    Статус:
+                                </label>
+                                <select class="select search-filter__select" th:field="*{status}">
+                                    <option value="all">
+                                        все
+                                    </option>
+                                    <option value="false">
+                                        активные
+                                    </option>
+                                    <option value="true">
+                                        заблокированные
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="search-filter__block btn-news">
+                                <button class="btn" type="submit">
+                                    Применить
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="admin__wrap">
+                        <div class="inner-page__main">
+                            <div class="friends__list">
+                                <div class="friends-block" th:each="user : ${usersList}">
+                                    <div class="friends-block__img">
+                                        <img th:src="${user.photo}" alt="Артем">
+                                    </div>
+                                    <div class="friends-block__info">
+                                        <a th:href="@{'http://localhost:8080/profile/' + ${user.id}}" class="friends-block__name" th:text="${user.firstName + ' ' + user.lastName}">
+                                        </a>
+                                        <span th:if="${user.city == null && user.country == null && user.age == null}" class="friends-block__age-city">
+                                            Профиль не заполнен
+                                        </span>
+                                        <span th:if="${user.city != null || user.country != null || user.age != null}" class="friends-block__age-city"
+                                        th:text="${(user.city != null ? user.city + (user.country != null || user.age != null ? ', ' : '') : '') +
+                                        (user.country != null ? user.country + (user.age != null ? ', ' : '') : '') +
+                                        (user.age != null ? 'Возраст: ' + user.age : '')}">
+                                        </span>
+                                    </div>
+                                    <div class="friends-block__actions">
+                                        <form th:action="${'/user/block_unblock/' + user.id}" method="post">
+                                            <button type="submit" class="friends-block__actions-block has-tooltip" data-original-title="null">
+                                                <div class="simple-svg-wrapper">
+                                                    <img class="icon" th:src="${user.isBlocked ? '/img/unblocked.svg' : '/img/blocked.svg'}" alt="icon">
+                                                </div>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div data-v-d4e6e290="" class="teleporter hidden">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+</body>
+</html>

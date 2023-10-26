@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<body>
+<div class="main-layout__sidebar" th:fragment="sidebar">
+    <div class="main-layout__logo admin">
+        <div class="simple-svg-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 13" fill="none" class="simple-svg">
+                <path d="M8.784 12.204H0V10.962L6.75 1.53H0V0.197999H8.658V1.44L1.908 10.872H8.784V12.204Z"
+                      fill="white">
+                </path>
+                <path d="M14.6693 12.204H22.5353V0.197999H14.6693V1.53H21.0413V5.4H14.7953V6.732H21.0413V10.872H14.6693V12.204Z"
+                      fill="white">
+                </path>
+                <path d="M37.2293 12.204H35.4653L32.4053 7.434H30.0113V12.204H28.5173V0.197999H33.3413C34.4573 0.197999 35.3633 0.528 36.0593 1.188C36.7553 1.848 37.1033 2.724 37.1033 3.816C37.1033 4.848 36.8033 5.67 36.2033 6.282C35.6033 6.894 34.8653 7.236 33.9893 7.308L37.2293 12.204ZM33.1613 6.12C33.8693 6.12 34.4453 5.904 34.8893 5.472C35.3333 5.04 35.5553 4.488 35.5553 3.816C35.5553 3.144 35.3333 2.598 34.8893 2.178C34.4453 1.746 33.8693 1.53 33.1613 1.53H30.0113V6.12H33.1613Z"
+                      fill="white">
+                </path>
+                <path d="M48.5405 12.42C46.7765 12.42 45.3425 11.832 44.2385 10.656C43.1345 9.48 42.5825 7.998 42.5825 6.21C42.5825 4.422 43.1345 2.94 44.2385 1.764C45.3425 0.588 46.7765 0 48.5405 0C50.2925 0 51.7205 0.588 52.8245 1.764C53.9405 2.94 54.4985 4.422 54.4985 6.21C54.4985 7.998 53.9405 9.48 52.8245 10.656C51.7205 11.832 50.2925 12.42 48.5405 12.42ZM48.5405 11.088C49.8605 11.088 50.9225 10.632 51.7265 9.72C52.5425 8.796 52.9505 7.626 52.9505 6.21C52.9505 4.782 52.5425 3.612 51.7265 2.7C50.9225 1.788 49.8605 1.332 48.5405 1.332C47.2085 1.332 46.1405 1.788 45.3365 2.7C44.5325 3.612 44.1305 4.782 44.1305 6.21C44.1305 7.626 44.5325 8.796 45.3365 9.72C46.1405 10.632 47.2085 11.088 48.5405 11.088Z"
+                      fill="white">
+                </path>
+                <path d="M70.3682 12.204H68.9282L61.9262 2.628V12.204H60.4322V0.197999H61.9622L68.8742 9.576V0.197999H70.3682V12.204Z"
+                      fill="white">
+
+                </path>
+                <path d="M84.6423 12.204H76.7763V0.197999H84.6423V1.53H78.2703V5.4H84.5163V6.732H78.2703V10.872H84.6423V12.204Z"
+                      fill="white">
+
+                </path>
+            </svg>
+        </div>
+        <div class="main-layout__admin-logo">
+            <div class="simple-svg-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 77 8" fill="none" class="simple-svg">
+                    <path d="M7.15991 7.45704L4.45261 0.744141H3.41599L0.71875 7.45704H1.67486L2.26866 5.96752H5.61001L6.2038 7.45704H7.15991ZM5.3584 5.22276H2.5102L3.93933 1.60967L5.3584 5.22276Z"
+                          fill="white" fill-opacity="0.6">
+                    </path>
+                    <path d="M11.6406 7.45704C13.7239 7.45704 15.0826 6.01784 15.0826 4.10562C15.0826 2.20347 13.7239 0.744141 11.6406 0.744141H9.34592V7.45704H11.6406ZM11.6406 6.71228H10.1813V1.4889H11.6406C13.3012 1.4889 14.217 2.65636 14.217 4.10562C14.217 5.54482 13.271 6.71228 11.6406 6.71228Z"
+                          fill="white" fill-opacity="0.6">
+                    </path>
+                    <path d="M24.2733 7.45704V0.744141H23.0756L20.9822 5.79643L18.8989 0.744141H17.7013V7.45704H18.5366V1.93173L20.8111 7.45704H21.1533L23.4379 1.93173V7.45704H24.2733Z"
+                          fill="white" fill-opacity="0.6">
+                    </path>
+                    <path d="M27.9829 7.45704V0.744141H27.1476V7.45704H27.9829Z" fill="white"
+                          fill-opacity="0.6">
+                    </path>
+                    <path d="M36.4194 7.45704V0.744141H35.5841V5.98765L31.7194 0.744141H30.8639V7.45704H31.6992V2.10282L35.6143 7.45704H36.4194Z"
+                          fill="white" fill-opacity="0.6">
+                    </path>
+                    <path d="M44.0363 7.45704V4.79H45.8982C47.2267 4.79 48.0016 3.86408 48.0016 2.76707C48.0016 1.67006 47.2468 0.744141 45.8982 0.744141H43.2009V7.45704H44.0363ZM45.7975 4.04524H44.0363V1.4889H45.7975C46.5926 1.4889 47.1361 2.01225 47.1361 2.76707C47.1361 3.52189 46.5926 4.04524 45.7975 4.04524Z"
+                          fill="white" fill-opacity="0.6">
+                    </path>
+                    <path d="M55.3865 7.45704L52.6792 0.744141H51.6426L48.9453 7.45704H49.9014L50.4952 5.96752H53.8366L54.4304 7.45704H55.3865ZM53.585 5.22276H50.7368L52.1659 1.60967L53.585 5.22276Z"
+                          fill="white" fill-opacity="0.6">
+                    </path>
+                    <path d="M63.128 7.45704V0.744141H62.2926V5.98765L58.4279 0.744141H57.5725V7.45704H58.4078V2.10282L62.3228 7.45704H63.128Z"
+                          fill="white" fill-opacity="0.6">
+                    </path>
+                    <path d="M70.4046 7.45704V6.71228H66.8418V4.39749H70.3341V3.65273H66.8418V1.4889H70.4046V0.744141H66.0065V7.45704H70.4046Z"
+                          fill="white" fill-opacity="0.6">
+                    </path>
+                    <path d="M77.0001 7.45704V6.71228H73.8801V0.744141H73.0448V7.45704H77.0001Z" fill="white"
+                          fill-opacity="0.6">
+                    </path>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <nav class="main-layout__nav">
+        <a th:href="@{/statistics}" th:class="'main-layout__link ' + ${statistics}">
+            <img src="/img/sidebar/admin/statistics.png" alt="Статистика">
+            <span>
+                Статистика
+            </span>
+        </a>
+        <a th:href="@{/users}" th:class="'main-layout__link ' + ${users}">
+            <img src="/img/sidebar/admin/users.png" alt="Люди">
+            <span>
+                Люди
+            </span>
+        </a>
+        <a th:href="@{/posts}" th:class="'main-layout__link ' + ${posts}">
+            <img src="/img/sidebar/admin/posts.png" alt="Публикации">
+            <span>
+                Публикации
+            </span>
+        </a>
+        <a th:href="@{/comments}" th:class="'main-layout__link ' + ${comments}">
+            <img src="/img/sidebar/admin/comments.png" alt="Комментарии">
+            <span>
+                Комментарии
+            </span>
+        </a>
+        <a th:href="@{/moderators}" th:class="'main-layout__link ' + ${moderators}">
+            <img src="/img/sidebar/admin/moderators.png" alt="Администраторы и модераторы">
+            <span>
+                Администраторы и модераторы
+            </span>
+        </a>
+    </nav>
+    <a th:href="@{/exit}" class="main-layout__link">
+        <div class="simple-svg-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none" class="simple-svg">
+                <path d="M4 2.5V1H12V12.5H4V11" stroke="white" stroke-opacity="0.4" stroke-width="0.8">
+                </path>
+                <path d="M7.5 7H1M1 7L3.5 5M1 7L3.5 9" stroke="white" stroke-opacity="0.4" stroke-width="0.8"
+                      stroke-linecap="round" stroke-linejoin="round">
+                </path>
+            </svg>
+        </div>
+        <span>
+            Выйти
+        </span>
+    </a>
+</div>
+</body>
+
+</html>

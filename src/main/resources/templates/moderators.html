@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>
+        Администраторы и модераторы
+    </title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<div id="app">
+    <div class="main-layout">
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+        <div class="main-layout__main">
+            <header th:replace="~{fragments/header :: header}">
+            </header>
+            <main class="main-layout__page">
+                <div class="admin-moderators inner-page admin"><h2 class="admin__title">Администраторы и модераторы</h2>
+                    <div class="admin__wrap">
+                        <div class="inner-page__main">
+                            <div class="admin__search">
+                                <form method="post" th:action="@{/moderators/add}" th:object="${AddModerRq}">
+                                    <div class="search-filter add_moder">
+                                        <div class="search-filter__block">
+                                            <label class="search__label">
+                                                Почта:
+                                            </label>
+                                            <input th:field="*{email}" type="text" class="search__input">
+                                        </div>
+                                        <div class="search-filter__block time">
+                                            <label class="search__label">
+                                                Роль:
+                                            </label>
+                                            <select th:field="*{role}" class="select search-filter__select">
+                                                <option value="ADMIN">
+                                                    Администратор
+                                                </option>
+                                                <option value="MODER">
+                                                    Модератор
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="search-filter__block btn-news">
+                                            <button type="submit" class="btn">
+                                                Добавить
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="friends__list">
+                                <div class="friends-block" th:each="user : ${moderatorsList}">
+                                    <div class="friends-block__img">
+                                        <img th:src="${user.photo}" alt="Артем">
+                                    </div>
+                                    <div class="friends-block__info">
+                                        <a th:href="@{'http://localhost:8080/profile/' + ${user.id}}" class="friends-block__name" th:text="${user.firstName + ' ' + user.lastName}">
+                                        </a>
+                                        <span class="friends-block__age-city"
+                                              th:text="${#strings.equals(user.role, 'MODER') ? 'модератор' : 'администратор'}">
+                                        </span>
+                                    </div>
+                                    <div class="friends-block__actions">
+                                        <form th:action="${'/moderators/delete/' + user.id}" method="post">
+                                            <button type="submit" class="friends-block__actions-block has-tooltip" data-original-title="null">
+                                                <div class="simple-svg-wrapper">
+                                                    <img class="icon" th:src="${'/img/delete.svg'}" alt="icon">
+                                                </div>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div data-v-d4e6e290="" class="teleporter hidden">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

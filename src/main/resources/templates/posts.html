@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>
+        Публикации
+    </title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+<div id="app">
+    <div class="main-layout">
+        <div th:replace="~{fragments/sidebar :: sidebar}">
+        </div>
+        <div class="main-layout__main">
+            <header th:replace="~{fragments/header :: header}">
+            </header>
+            <main class="main-layout__page">
+                <div class="admin-posts inner-page admin">
+                    <h2 class="admin__title">
+                        Публикации
+                    </h2>
+                    <div class="admin__wrap">
+                        <div class="inner-page__main">
+                            <div class="admin__search">
+                                <form method="get" th:action="@{/posts}" th:object="${FindPostRq}">
+                                    <div class="search-filter">
+                                        <div class="search-filter__block">
+                                            <label class="search__label">
+                                                Текст:
+                                            </label>
+                                            <input th:field="*{text}" type="text" class="search__input">
+                                        </div>
+                                        <div class="search-filter__block">
+                                            <label for="search-news-author" class="search__label">
+                                                Автор:
+                                            </label>
+                                            <input th:field="*{author}" id="search-news-author" type="text"
+                                                   class="search__input">
+                                        </div>
+                                        <div class="search-filter__block time">
+                                            <label class="search__label">
+                                                Время публикации:
+                                            </label>
+                                            <select th:field="*{time}" class="select search-filter__select">
+                                                <option value="">
+                                                </option>
+                                                <option value="year">
+                                                    За последний год
+                                                </option>
+                                                <option value="month">
+                                                    За последний месяц
+                                                </option>
+                                                <option value="week">
+                                                    За последнюю неделю
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="search-filter__block">
+                                            <label class="search__label">
+                                                Статус:
+                                            </label>
+                                            <select th:field="*{status}" class="select search-filter__select">
+                                                <option value="all">
+                                                    все
+                                                </option>
+                                                <option value="false">
+                                                    активные
+                                                </option>
+                                                <option value="true">
+                                                    заблокированные
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="search-filter__block btn-news">
+                                            <button type="submit" class="btn">
+                                                Применить
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="admin-posts__list">
+                                <div class="news-block"
+                                     th:each="post : ${postsList}">
+                                    <div class="edit">
+                                    </div>
+                                    <div class="news-block__author">
+                                        <a th:href="@{'http://localhost:8080/profile/' + ${post.author.id}}" href="/profile/64" class="news-block__author-pic">
+                                            <img th:src="${post.author.photo}"
+                                                 alt="Lillith">
+                                        </a>
+                                        <div class="news-block__author-info">
+                                            <a th:href="@{'http://localhost:8080/profile/' + ${post.author.id}}" class="news-block__author-name"
+                                               th:text="${post.author.firstName + ' ' + post.author.lastName}">
+                                            </a>
+                                            <span class="news-block__author-time" th:text="${post.time}">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="news-block__content">
+                                        <div class="news-block__content-main">
+                                            <h3 class="news-block__content-title" th:text="${post.title}">
+                                            </h3>
+                                            <p class="news-block__content-text" th:text="${post.postText}">
+                                            </p>
+                                        </div>
+                                        <div class="friends-block__actions">
+                                            <form th:action="${'/post/block_unblock/' + post.id}" method="post">
+                                                <button type="submit" class="friends-block__actions-block has-tooltip"
+                                                        data-original-title="null">
+                                                    <div class="simple-svg-wrapper">
+                                                        <img class="icon"
+                                                             th:src="${post.isBlocked ? '/img/unblocked.svg' : '/img/blocked.svg'}"
+                                                             alt="icon">
+                                                    </div>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

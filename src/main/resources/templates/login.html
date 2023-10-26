@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>
+        Вход
+    </title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/loginPage.css">
+</head>
+<body>
+<div id="app">
+    <div class="empty-layout">
+        <form th:action="@{/login}" method="post" class="admin-login" th:object="${LoginRq}">
+            <h1 class="admin-login__title form__title">
+                Вход в админ-панель
+            </h1>
+            <div class="form__group">
+                <input th:field="*{email}" placeholder="e-mail" id="admin-login-email" name="email" class="form__input">
+                <label for="admin-login-email" class="form__label">
+                </label>
+            </div>
+            <div class="form__group">
+                <label for="admin-login-password" class="form__label">
+                </label>
+                <input th:field="*{password}" placeholder="пароль" name="password" id="admin-login-password" type="password" class="form__input">
+                <div class="form__error-block">
+                </div>
+                <button type="submit" class="form__password-icon">
+                    <div class="simple-svg-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 12" fill="none" class="simple-svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.5 8.21719C8.31376 8.21719 7.34884 7.22265 7.34884 6C7.34884 4.77735 8.31376 3.78281 9.5 3.78281C10.6862 3.78281 11.6512 4.77735 11.6512 6C11.6512 7.22265 10.6862 8.21719 9.5 8.21719ZM9.5 2.48488C7.61927 2.48488 6.08956 4.06154 6.08956 6C6.08956 7.93846 7.61927 9.51511 9.5 9.51511C11.3807 9.51511 12.9104 7.93846 12.9104 6C12.9104 4.06154 11.3807 2.48488 9.5 2.48488ZM9.5 10.7021C5.79866 10.7021 2.58278 7.17138 1.5996 5.97534C2.58278 4.78838 5.79079 1.29793 9.5 1.29793C13.2007 1.29793 16.415 4.78968 17.4004 5.97631C16.4191 7.173 13.2098 10.7021 9.5 10.7021ZM18.7148 5.58272C18.5476 5.35493 14.567 0 9.5 0C4.43298 0 0.452396 5.35493 0.285227 5.58272L0 5.97177L0.283653 6.36212C0.450507 6.5925 4.43109 12 9.5 12C14.5689 12 18.5495 6.5925 18.7163 6.36212L19 5.97177L18.7148 5.58272Z"
+                                  fill="white" fill-opacity="0.5">
+                            </path>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+            <div class="admin-login__action">
+                <button class="btn btn--white" type="submit">
+                    <span class="helper">
+                    </span>
+                    Войти
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="mallbery-caa" style="z-index: 2147483647 !important; text-transform: none !important; position: fixed;"></div>
+</body>
+</html>
