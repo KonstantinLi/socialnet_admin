@@ -26,8 +26,10 @@
                             <h3 class="statistic-block__content-title">
                                 Количество зарегистрированных пользователей по странам:
                             </h3>
-                            <div class="statistic-block__countries"  th:each="countriesWithUsers : ${countriesWithUsers}">
-                                <span class="statistic-block__content-text" th:text="${countriesWithUsers.region + ': '}">
+                            <div class="statistic-block__countries"
+                                 th:each="countriesWithUsers : ${countriesWithUsers}">
+                                <span class="statistic-block__content-text"
+                                      th:text="${countriesWithUsers.region + ': '}">
                                 </span>
                                 <span class="statistic-block__content-text" th:text="${countriesWithUsers.countUsers}">
                                 </span>
@@ -41,7 +43,7 @@
                             <h3 class="statistic-block__content-title">
                                 Количество зарегистрированных пользователей по городам:
                             </h3>
-                            <div class="statistic-block__countries"  th:each="citiesWithUsers : ${citiesWithUsers}">
+                            <div class="statistic-block__countries" th:each="citiesWithUsers : ${citiesWithUsers}">
                                 <span class="statistic-block__content-text" th:text="${citiesWithUsers.region + ': '}">
                                 </span>
                                 <span class="statistic-block__content-text" th:text="${citiesWithUsers.countUsers}">

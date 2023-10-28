@@ -1,7 +1,14 @@
 server:
   port: 8081
 
+client:
+  local: http://localhost:8081
+  remote: http://217.107.219.242:8081
+
 spring:
+  profiles:
+    active: '@spring.profiles.active@'
+
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/socialnet
@@ -12,15 +19,32 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
 
     open-in-view: false
     show-sql: true
+
+  #TODO probably liquibase is not needed
+  liquibase:
+    enabled: true
+    drop-first: true
+    change-log: classpath:db.changelog/socialnet_changelog.xml
 
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
 
-auth:
-  secret: someSecretCode
-  time-to-live: 3600000000
+jwt:
+  secret: 6E76BC89F358872832CC3DBEC8A95
+  lifetime: 12h
+
+logging:
+  level:
+    org.hibernate:
+      SQL: info
+
+logger:
+  path: logs
+  expired: PT168H
+  console:
+    thresholdFilter: '@logger.console.thresholdFilter@'

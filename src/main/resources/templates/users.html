@@ -27,7 +27,8 @@
                                 <label for="search-people-name" class="search__label">
                                     Имя:
                                 </label>
-                                <input th:field="*{first_name}" id="search-people-name" type="text" class="search__input">
+                                <input th:field="*{first_name}" id="search-people-name" type="text"
+                                       class="search__input">
                             </div>
                             <div class="search-filter__block lastname">
                                 <label for="search-people-lastname" class="search__label">
@@ -124,22 +125,29 @@
                                         <img th:src="${user.photo}" alt="Артем">
                                     </div>
                                     <div class="friends-block__info">
-                                        <a th:href="@{'http://localhost:8080/profile/' + ${user.id}}" class="friends-block__name" th:text="${user.firstName + ' ' + user.lastName}">
+                                        <a th:href="@{'http://localhost:8080/profile/' + ${user.id}}"
+                                           class="friends-block__name"
+                                           th:text="${user.firstName + ' ' + user.lastName}">
                                         </a>
-                                        <span th:if="${user.city == null && user.country == null && user.age == null}" class="friends-block__age-city">
+                                        <span th:if="${user.city == null && user.country == null && user.age == null}"
+                                              class="friends-block__age-city">
                                             Профиль не заполнен
                                         </span>
-                                        <span th:if="${user.city != null || user.country != null || user.age != null}" class="friends-block__age-city"
-                                        th:text="${(user.city != null ? user.city + (user.country != null || user.age != null ? ', ' : '') : '') +
+                                        <span th:if="${user.city != null || user.country != null || user.age != null}"
+                                              class="friends-block__age-city"
+                                              th:text="${(user.city != null ? user.city + (user.country != null || user.age != null ? ', ' : '') : '') +
                                         (user.country != null ? user.country + (user.age != null ? ', ' : '') : '') +
                                         (user.age != null ? 'Возраст: ' + user.age : '')}">
                                         </span>
                                     </div>
                                     <div class="friends-block__actions">
                                         <form th:action="${'/user/block_unblock/' + user.id}" method="post">
-                                            <button type="submit" class="friends-block__actions-block has-tooltip" data-original-title="null">
+                                            <button type="submit" class="friends-block__actions-block has-tooltip"
+                                                    data-original-title="null">
                                                 <div class="simple-svg-wrapper">
-                                                    <img class="icon" th:src="${user.isBlocked ? '/img/unblocked.svg' : '/img/blocked.svg'}" alt="icon">
+                                                    <img class="icon"
+                                                         th:src="${user.isBlocked ? '/img/unblocked.svg' : '/img/blocked.svg'}"
+                                                         alt="icon">
                                                 </div>
                                             </button>
                                         </form>
