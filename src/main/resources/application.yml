@@ -27,7 +27,7 @@ spring:
   #TODO probably liquibase is not needed
   liquibase:
     enabled: true
-    drop-first: true
+    drop-first: false
     change-log: classpath:db.changelog/socialnet_changelog.xml
 
   thymeleaf:
@@ -48,3 +48,6 @@ logger:
   expired: PT168H
   console:
     thresholdFilter: '@logger.console.thresholdFilter@'
+
+main-app:
+  statistics-url: http://217.107.219.242:8086/api/v1/statistics

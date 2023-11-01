@@ -21,27 +21,27 @@
                     <h2 class="admin__title">
                         Люди
                     </h2>
-                    <form th:action="@{/users}" th:object="${FindPersonRq}" method="get">
+                    <form th:action="@{/admin-console/users}" th:object="${FindPersonRq}" method="get">
                         <div class="search-filter">
                             <div class="search-filter__block name">
                                 <label for="search-people-name" class="search__label">
                                     Имя:
                                 </label>
-                                <input th:field="*{first_name}" id="search-people-name" type="text"
+                                <input th:field="*{firstName}" id="search-people-name" type="text"
                                        class="search__input">
                             </div>
                             <div class="search-filter__block lastname">
                                 <label for="search-people-lastname" class="search__label">
                                     Фамилия:
                                 </label>
-                                <input th:field="*{last_name}" id="search-people-lastname" class="search__input">
+                                <input th:field="*{lastName}" id="search-people-lastname" class="search__input">
                             </div>
                             <div class="search-filter__block age">
                                 <label class="search__label">
                                     Возраст:
                                 </label>
                                 <div class="search__row">
-                                    <select class="select search-filter__select" th:field="*{age_from}">
+                                    <select class="select search-filter__select" th:field="*{ageFrom}">
                                         <option value="">
                                             От
                                         </option>
@@ -61,7 +61,7 @@
                                     <span class="search-defis">
                                     —
                                 </span>
-                                    <select class="select search-filter__select" th:field="*{age_to}">
+                                    <select class="select search-filter__select" th:field="*{ageTo}">
                                         <option value="">
                                             До
                                         </option>
@@ -122,14 +122,14 @@
                             <div class="friends__list">
                                 <div class="friends-block" th:each="user : ${usersList}">
                                     <div class="friends-block__img">
-                                        <img th:src="${user.photo}" alt="Артем">
+                                        <img th:src="${user.photo}">
                                     </div>
                                     <div class="friends-block__info">
                                         <a th:href="@{'http://localhost:8080/profile/' + ${user.id}}"
                                            class="friends-block__name"
                                            th:text="${user.firstName + ' ' + user.lastName}">
                                         </a>
-                                        <span th:if="${user.city == null && user.country == null && user.age == null}"
+                                        <!--<span th:if="${user.city == null && user.country == null && user.age == null}"
                                               class="friends-block__age-city">
                                             Профиль не заполнен
                                         </span>
@@ -138,10 +138,10 @@
                                               th:text="${(user.city != null ? user.city + (user.country != null || user.age != null ? ', ' : '') : '') +
                                         (user.country != null ? user.country + (user.age != null ? ', ' : '') : '') +
                                         (user.age != null ? 'Возраст: ' + user.age : '')}">
-                                        </span>
+                                        </span>-->
                                     </div>
                                     <div class="friends-block__actions">
-                                        <form th:action="${'/user/block_unblock/' + user.id}" method="post">
+                                        <form th:action="${'/admin-console/users/block_unblock/' + user.id}" method="post">
                                             <button type="submit" class="friends-block__actions-block has-tooltip"
                                                     data-original-title="null">
                                                 <div class="simple-svg-wrapper">

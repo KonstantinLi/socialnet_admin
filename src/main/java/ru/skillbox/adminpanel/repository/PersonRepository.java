@@ -3,10 +3,11 @@ package ru.skillbox.adminpanel.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import ru.skillbox.adminpanel.dto.response.RegionStatisticsRs;
+import ru.skillbox.adminpanel.dto.response.RegionStatisticRs;
 import ru.skillbox.adminpanel.entity.Person;
 import ru.skillbox.adminpanel.exception.PersonNotFoundException;
 
@@ -16,7 +17,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PersonRepository extends JpaRepository<Person, Long> {
+public interface PersonRepository extends JpaRepository<Person, Long>, JpaSpecificationExecutor<Person> {
+    List<Person> findByFirstNameIgnoreCase(String firstName);
 
     /**
      * @param personIds - список персон, для которых будет сгенерирован список предложений в друзья
@@ -124,7 +126,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
             + " ORDER BY country ASC"
             , nativeQuery = true
     )
-    Collection<RegionStatisticsRs> countCountryStatistics();
+    Collection<RegionStatisticRs> countCountryStatistics();
 
     @Query(value = "SELECT city AS region, COUNT(city) AS countUsers"
             + " FROM persons"
@@ -132,8 +134,10 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
             + " ORDER BY city ASC"
             , nativeQuery = true
     )
-    Collection<RegionStatisticsRs> countCityStatistics();
+    Collection<RegionStatisticRs> countCityStatistics();
 
     @Query(value = "select * from persons p where p.deleted_time > :timeParam", nativeQuery = true)
     Optional<List<Person>> findAllInactiveUsersByDeletedTime(@Param("timeParam") LocalDateTime timeParam);
+
+    List<Person> findAllByFirstName(String firstName);
 }

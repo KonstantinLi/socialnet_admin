@@ -13,28 +13,28 @@ public class SearchPersons {
         PersonEntity person = OLDPersonsRepository.findByEmail(
                 SecurityContextHolder.getContext().getAuthentication().getName()
         ).get();
-        Specification<PersonEntity> specification = PersonSpecification.getAll().and(PersonSpecification.excludeMe(person.getId()));
+        Specification<PersonEntity> specification = PersonSearchSpecification.getAll().and(PersonSearchSpecification.excludeMe(person.getId()));
 
         if (personRq.getFirst_name() != null && !personRq.getFirst_name().isBlank()) {
-            specification = specification.and(PersonSpecification.nameContains(personRq.getFirst_name()));
+            specification = specification.and(PersonSearchSpecification.nameContains(personRq.getFirst_name()));
         }
         if (personRq.getLast_name() != null && !personRq.getLast_name().isBlank()) {
-            specification = specification.and(PersonSpecification.lastNameContains(personRq.getLast_name()));
+            specification = specification.and(PersonSearchSpecification.lastNameContains(personRq.getLast_name()));
         }
         if (personRq.getAge_from() != null) {
-            specification = specification.and(PersonSpecification.ageFrom(personRq.getAge_from()));
+            specification = specification.and(PersonSearchSpecification.ageFrom(personRq.getAge_from()));
         }
         if (personRq.getAge_to() != null) {
-            specification = specification.and(PersonSpecification.ageTo(personRq.getAge_to()));
+            specification = specification.and(PersonSearchSpecification.ageTo(personRq.getAge_to()));
         }
         if (personRq.getCountry() != null && !personRq.getCountry().isBlank()) {
-            specification = specification.and(PersonSpecification.personCountry(personRq.getCountry()));
+            specification = specification.and(PersonSearchSpecification.personCountry(personRq.getCountry()));
         }
         if (personRq.getCity() != null && !personRq.getCity().isBlank()) {
-            specification = specification.and(PersonSpecification.personCity(personRq.getCity()));
+            specification = specification.and(PersonSearchSpecification.personCity(personRq.getCity()));
         }
         if (personRq.getStatus() != null && !personRq.getStatus().equals("all")) {
-            specification = specification.and(PersonSpecification.blockOrUnblock(personRq.getStatus()));
+            specification = specification.and(PersonSearchSpecification.blockOrUnblock(personRq.getStatus()));
         }
         return OLDPersonsRepository.findAll(specification);}*/
 

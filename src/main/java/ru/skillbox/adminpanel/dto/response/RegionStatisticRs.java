@@ -1,13 +1,7 @@
 package ru.skillbox.adminpanel.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+public interface RegionStatisticRs {
+    String getRegion();
 
-@Data
-@AllArgsConstructor
-public class RegionStatisticRs {
-
-    private String region;
-
-    private Long countUsers;
+    Long getCountUsers();
 }

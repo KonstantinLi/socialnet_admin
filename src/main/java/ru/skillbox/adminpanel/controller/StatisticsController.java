@@ -17,15 +17,15 @@ import ru.skillbox.adminpanel.service.StatisticsService;
 @Info
 public class StatisticsController {
 
-    private final StatisticsService statisticService;
+    private final StatisticsService statisticsService;
 
-    @ModelAttribute("MeRs")
+    @ModelAttribute("CurrentUserInfo")
     public CurrentUserInfoRs currentUserInfoRs(@CookieValue(name = "jwtToken") String token) {
-        return statisticService.getCurrentUser(token);
+        return statisticsService.getCurrentUser(token);
     }
 
     @GetMapping("/statistics")
     public String getStatistic(Model model) {
-        return statisticService.buildStatisticPage(model);
+        return statisticsService.buildStatisticPage(model);
     }
 }

@@ -8,7 +8,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import ru.skillbox.adminpanel.config.JwtProperties;
 import ru.skillbox.adminpanel.entity.Admin;
-import ru.skillbox.adminpanel.entity.Person;
 
 import java.util.Date;
 import java.util.HashMap;

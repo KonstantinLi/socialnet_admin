@@ -9,6 +9,7 @@ import ru.skillbox.adminpanel.entity.Person;
 
 import java.util.List;
 
+
 @SuppressWarnings("Annotator")
 @Mapper(
         componentModel = MappingConstants.ComponentModel.SPRING
@@ -28,6 +29,5 @@ public interface PersonMapper {
     @Mapping(target = "friendStatus", source = "friendStatus")
     @Mapping(target = "isBlockedByCurrentUser", source = " isBlockedByCurrentUser")
     PersonRs personToPersonRs(Person person, String friendStatus, Boolean isBlockedByCurrentUser);
-
     List<PersonRs> toRsList(List<Person> personList);
 }

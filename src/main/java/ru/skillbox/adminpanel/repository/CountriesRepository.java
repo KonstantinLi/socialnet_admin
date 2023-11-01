@@ -3,7 +3,7 @@ package ru.skillbox.adminpanel.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import ru.skillbox.adminpanel.dto.response.RegionStatisticsRs;
+import ru.skillbox.adminpanel.dto.response.RegionStatisticRs;
 import ru.skillbox.adminpanel.entity.Country;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public interface CountriesRepository extends JpaRepository<Country, Long> {
             + " GROUP BY t.name ORDER BY t.name ASC"
             , nativeQuery = true
     )
-    List<RegionStatisticsRs> countRegionStatistics();
+    List<RegionStatisticRs> countRegionStatistics();
 
     Optional<Country> findCountryByName(String name);
 }

@@ -1,8 +1,17 @@
-package ru.skillbox.adminpanel.service.search;
+package ru.skillbox.adminpanel.util;
 
-public class PersonSpecification {
+import org.springframework.data.jpa.domain.Specification;
+import ru.skillbox.adminpanel.entity.Person;
 
-    /*public static Specification<Person> excludeMe(Long id) {
+import java.time.LocalDateTime;
+import java.util.List;
+
+public class PersonSearchSpecification {
+    private PersonSearchSpecification() {
+    }
+
+    @SuppressWarnings("unused")
+    public static Specification<Person> excludeMe(Long id) {
         return (root, query, cb) -> cb.notEqual(root.get("id"), id);
     }
 
@@ -14,34 +23,35 @@ public class PersonSpecification {
         return (root, query, cb) -> cb.like(cb.lower(root.get("lastName")), "%" + lastName.toLowerCase() + "%");
     }
 
+    @SuppressWarnings("unused")
     public static Specification<Person> onlyNameInRequest(List<Long> usersIds) {
         return (root, query, cb) -> cb.in(root.get("id")).value(usersIds);
     }
 
-    public static Specification<PersonEntity> ageFrom(Integer ageFrom) {
+    public static Specification<Person> ageFrom(Integer ageFrom) {
         LocalDateTime dateTimeFrom = LocalDateTime.now().minusYears(ageFrom);
         return (root, query, cb) -> cb.lessThan(root.get("birthDate"), dateTimeFrom);
     }
 
-    public static Specification<PersonEntity> ageTo(Integer ageTo) {
+    public static Specification<Person> ageTo(Integer ageTo) {
         LocalDateTime dateTimeTo = LocalDateTime.now().minusYears(ageTo);
         return (root, query, cb) -> cb.greaterThan(root.get("birthDate"), dateTimeTo);
     }
 
-    public static Specification<PersonEntity> personCountry(String country) {
+    public static Specification<Person> personCountry(String country) {
         return (root, query, cb) -> cb.like(cb.lower(root.get("country")), "%" + country.toLowerCase() + "%");
     }
 
-    public static Specification<PersonEntity> personCity(String city) {
+    public static Specification<Person> personCity(String city) {
         return (root, query, cb) -> cb.like(cb.lower(root.get("city")), "%" + city.toLowerCase() + "%");
     }
 
-    public static Specification<PersonEntity> blockOrUnblock(String block) {
+    public static Specification<Person> blockOrUnblock(String block) {
         boolean blockUnblock = block.equals("true");
         return ((root, query, cb) -> cb.equal(root.get("isBlocked"), blockUnblock));
     }
 
-    public static Specification<PersonEntity> getAll() {
+    public static Specification<Person> getAll() {
         return ((root, query, cb) -> cb.isNotNull(root.get("id")));
-    }*/
+    }
 }

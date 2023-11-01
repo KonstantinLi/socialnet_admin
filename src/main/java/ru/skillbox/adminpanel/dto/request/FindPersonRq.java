@@ -5,13 +5,13 @@ import lombok.Data;
 @Data
 public class FindPersonRq {
 
-    private String first_name;
+    private String firstName;
 
-    private String last_name;
+    private String lastName;
 
-    private Integer age_from;
+    private Integer ageFrom;
 
-    private Integer age_to;
+    private Integer ageTo;
 
     private String city;
 
