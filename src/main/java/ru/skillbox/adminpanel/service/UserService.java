@@ -12,17 +12,11 @@ import ru.skillbox.adminpanel.util.PersonSearchExecutor;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
-    /*private final SearchPersons searchPersons;
-    private final PersonMapper personMapper;
-    private final PersonsRepository personsRepository;*/
     private final PersonSearchExecutor personSearchExecutor;
-
     private final PersonMapper personMapper;
     private final PersonRepository personRepository;
 
@@ -33,32 +27,22 @@ public class UserService {
     }
 
     private List<PersonRs> findPersons(FindPersonRq personRq) {
-        List<PersonRs> personRsList = personsToPersonsRs(personSearchExecutor.findPersons(personRq)).stream()
+        return personsToPersonsRs(personSearchExecutor.findPersons(personRq)).stream()
                 .sorted(Comparator.comparing(user -> user.getFirstName() + user.getLastName()))
-                .collect(Collectors.toList());
-        return personRsList;
+                .toList();
     }
-
-    /*public void blockUnblockUser(Long id) {
-        PersonEntity person = personsRepository.findById(id).orElseThrow();
-        person.setIsBlocked(!person.getIsBlocked());
-        personsRepository.save(person);
-    }
-
-    private List<PersonRs> findPersons(FindPersonRq personRq) {
-        return personsToPersonsRs(searchPersons.findPersons(personRq)).stream()
-                .sorted(Comparator.comparing(user -> user.getFirstName() + user.getLastName()))
-                .collect(Collectors.toList());
-    }
-    */
 
     private List<PersonRs> personsToPersonsRs(List<Person> persons) {
-        return persons.stream().map(personMapper::personToPersonRs).collect(Collectors.toList());
+        return persons.stream().map(personMapper::personToPersonRs).toList();
     }
 
     public void blockUnblockUser(Long id) {
         personRepository.findById(id).ifPresent(person -> {
-            person.setIsBlocked(!person.getIsBlocked());
+            if (person.getIsBlocked() == null || !person.getIsBlocked()) {
+                person.setIsBlocked(true);
+            } else {
+                person.setIsBlocked(false);
+            }
             personRepository.save(person);
         });
     }

@@ -51,3 +51,4 @@ logger:
 
 main-app:
   statistics-url: http://217.107.219.242:8086/api/v1/statistics
+  profile-url: http://217.107.219.242:8080/profile

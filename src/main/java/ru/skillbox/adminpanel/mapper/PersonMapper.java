@@ -19,7 +19,7 @@ public interface PersonMapper {
     PersonMapper INSTANCE = Mappers.getMapper(PersonMapper.class);
 
     @Mapping(target = "online", source = "onlineStatus")
-    @Mapping(target = "userDeleted", source = "isDeleted")
+    @Mapping(target = "userDeleted", source = "isDeleted", defaultValue = "false")
     @Mapping(target = "messagesPermission", source = "person.messagePermissions")
     PersonRs personToPersonRs(Person person);
 

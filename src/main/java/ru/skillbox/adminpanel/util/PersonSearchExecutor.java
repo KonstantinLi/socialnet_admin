@@ -18,9 +18,6 @@ public class PersonSearchExecutor {
     private final PersonRepository personRepository;
 
     public List<Person> findPersons(FindPersonRq personRq) {
-        /*Person person = personRepository.findByEmail(
-                SecurityContextHolder.getContext().getAuthentication().getName()
-        ).get(); */
 
         Specification<Person> specification = getAll();
 
@@ -45,7 +42,7 @@ public class PersonSearchExecutor {
         if (personRq.getStatus() != null && !personRq.getStatus().equals("all")) {
             specification = specification.and(blockOrUnblock(personRq.getStatus()));
         }
-        List<Person> all = personRepository.findAll(specification);
-        return all;
+
+        return personRepository.findAll(specification);
     }
 }

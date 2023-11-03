@@ -125,7 +125,7 @@
                                         <img th:src="${user.photo}">
                                     </div>
                                     <div class="friends-block__info">
-                                        <a th:href="@{'http://localhost:8080/profile/' + ${user.id}}"
+                                        <a th:href="@{${@environment.getProperty('main-app.profile-url')} + ${user.id}}"
                                            class="friends-block__name"
                                            th:text="${user.firstName + ' ' + user.lastName}">
                                         </a>
