@@ -84,12 +84,14 @@
                                     <div class="edit">
                                     </div>
                                     <div class="news-block__author">
-                                        <a th:href="@{'http://localhost:8080/profile/' + ${comment.author.id}}" class="news-block__author-pic">
+                                        <a th:href="@{'http://localhost:8080/profile/' + ${comment.author.id}}"
+                                           class="news-block__author-pic">
                                             <img th:src="${comment.author.photo}"
                                                  alt="Lillith">
                                         </a>
                                         <div class="news-block__author-info">
-                                            <a th:href="@{'http://localhost:8080/profile/' + ${comment.author.id}}" class="news-block__author-name"
+                                            <a th:href="@{'http://localhost:8080/profile/' + ${comment.author.id}}"
+                                               class="news-block__author-name"
                                                th:text="${comment.author.firstName + ' ' + comment.author.lastName}">
                                             </a>
                                             <span class="news-block__author-time" th:text="${comment.time}">

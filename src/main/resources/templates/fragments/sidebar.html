@@ -66,38 +66,38 @@
         </div>
     </div>
     <nav class="main-layout__nav">
-        <a th:href="@{/statistics}" th:class="'main-layout__link ' + ${statistics}">
+        <a th:href="@{/admin-console/statistics}" th:class="'main-layout__link ' + ${statistics}">
             <img src="/img/sidebar/admin/statistics.png" alt="Статистика">
             <span>
                 Статистика
             </span>
         </a>
-        <a th:href="@{/users}" th:class="'main-layout__link ' + ${users}">
+        <a th:href="@{/admin-console/users}" th:class="'main-layout__link ' + ${users}">
             <img src="/img/sidebar/admin/users.png" alt="Люди">
             <span>
                 Люди
             </span>
         </a>
-        <a th:href="@{/posts}" th:class="'main-layout__link ' + ${posts}">
+        <a th:href="@{/admin-console/posts}" th:class="'main-layout__link ' + ${posts}">
             <img src="/img/sidebar/admin/posts.png" alt="Публикации">
             <span>
                 Публикации
             </span>
         </a>
-        <a th:href="@{/comments}" th:class="'main-layout__link ' + ${comments}">
+        <a th:href="@{/admin-console/comments}" th:class="'main-layout__link ' + ${comments}">
             <img src="/img/sidebar/admin/comments.png" alt="Комментарии">
             <span>
                 Комментарии
             </span>
         </a>
-        <a th:href="@{/moderators}" th:class="'main-layout__link ' + ${moderators}">
+        <a th:href="@{/admin-console/moderators}" th:class="'main-layout__link ' + ${moderators}">
             <img src="/img/sidebar/admin/moderators.png" alt="Администраторы и модераторы">
             <span>
                 Администраторы и модераторы
             </span>
         </a>
     </nav>
-    <a th:href="@{/exit}" class="main-layout__link">
+    <a th:href="@{/admin-console/exit}" class="main-layout__link">
         <div class="simple-svg-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none" class="simple-svg">
                 <path d="M4 2.5V1H12V12.5H4V11" stroke="white" stroke-opacity="0.4" stroke-width="0.8">

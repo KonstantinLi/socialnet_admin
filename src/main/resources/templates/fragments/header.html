@@ -3,10 +3,10 @@
 
 <body>
 <header class="main-layout__header admin" th:fragment="header">
-  <div class="main-layout__user">
-    <span class="main-layout__user-name" th:text="${MeRs.firstName + ' ' + MeRs.lastName}">
+    <div class="main-layout__user">
+    <span class="main-layout__user-name" th:text="${CurrentUserInfo.name}">
     </span>
-  </div>
+    </div>
 </header>
 </body>
 
