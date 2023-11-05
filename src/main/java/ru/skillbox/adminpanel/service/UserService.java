@@ -38,11 +38,8 @@ public class UserService {
 
     public void blockUnblockUser(Long id) {
         personRepository.findById(id).ifPresent(person -> {
-            if (person.getIsBlocked() == null || !person.getIsBlocked()) {
-                person.setIsBlocked(true);
-            } else {
-                person.setIsBlocked(false);
-            }
+            person.setIsBlocked(person.getIsBlocked() == null || !person.getIsBlocked());
+
             personRepository.save(person);
         });
     }

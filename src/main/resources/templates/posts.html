@@ -26,7 +26,7 @@
                     <div class="admin__wrap">
                         <div class="inner-page__main">
                             <div class="admin__search">
-                                <form method="get" th:action="@{/posts}" th:object="${FindPostRq}">
+                                <form method="get" th:action="@{/admin-console/posts}" th:object="${FindPostRq}">
                                     <div class="search-filter">
                                         <div class="search-filter__block">
                                             <label class="search__label">
@@ -111,7 +111,7 @@
                                             </p>
                                         </div>
                                         <div class="friends-block__actions">
-                                            <form th:action="${'/post/block_unblock/' + post.id}" method="post">
+                                            <form th:action="${'/admin-console/post/block_unblock/' + post.id}" method="post">
                                                 <button type="submit" class="friends-block__actions-block has-tooltip"
                                                         data-original-title="null">
                                                     <div class="simple-svg-wrapper">
