@@ -57,7 +57,7 @@ public class PostComment {
     )
     private Person author;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(
             name = "parent_id",
             foreignKey = @ForeignKey(name = "fk_comment_parent_id")

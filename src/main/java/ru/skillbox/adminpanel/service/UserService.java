@@ -33,7 +33,10 @@ public class UserService {
     }
 
     private List<PersonRs> personsToPersonsRs(List<Person> persons) {
-        return persons.stream().map(personMapper::personToPersonRs).toList();
+
+
+        List<PersonRs> list = persons.stream().map(personMapper::personToPersonRs).toList();
+        return list;
     }
 
     public void blockUnblockUser(Long id) {

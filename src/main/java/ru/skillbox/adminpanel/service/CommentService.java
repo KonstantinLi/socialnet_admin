@@ -4,20 +4,23 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import ru.skillbox.adminpanel.dto.request.FindCommentRq;
+import ru.skillbox.adminpanel.dto.response.CommentRs;
+import ru.skillbox.adminpanel.entity.PostComment;
 import ru.skillbox.adminpanel.exception.TimeException;
 import ru.skillbox.adminpanel.mapper.CommentMapper;
+import ru.skillbox.adminpanel.repository.PostCommentsRepository;
+import ru.skillbox.adminpanel.util.CommentSearchExecutor;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CommentService {
 
-    private final SearchComments searchComments;
+    private final CommentSearchExecutor commentSearchExecutor;
     private final CommentMapper commentMapper;
-    private final CommentRepository commentRepository;
+    private final PostCommentsRepository postCommentsRepository;
 
     public String buildCommentsPage(Model model, FindCommentRq findCommentRq) throws TimeException {
         model.addAttribute("comments", "router-link-active");
@@ -26,18 +29,18 @@ public class CommentService {
     }
 
     public void blockUnblockComment(Long id) {
-        CommentEntity comment = commentRepository.findById(id).orElseThrow();
+        PostComment comment = postCommentsRepository.findById(id).orElseThrow();
         comment.setIsBlocked(!comment.getIsBlocked());
-        commentRepository.save(comment);
+        postCommentsRepository.save(comment);
     }
 
     private List<CommentRs> findComments(FindCommentRq findCommentRq) throws TimeException {
-        return commentToCommentRs(searchComments.findComments(findCommentRq)).stream()
-                .sorted(Comparator.comparing(CommentRs::getId))
-                .collect(Collectors.toList());
+        return commentListToCommentRsList(commentSearchExecutor.findComments(findCommentRq)).stream()
+                .sorted(Comparator.comparing(CommentRs::getTime).reversed())
+                .toList();
     }
 
-    private List<CommentRs> commentToCommentRs(List<CommentEntity> comments) {
-        return comments.stream().map(commentMapper::toCommentRs).collect(Collectors.toList());
+    private List<CommentRs> commentListToCommentRsList(List<PostComment> comments) {
+        return comments.stream().map(commentMapper::toCommentRs).toList();
     }
 }

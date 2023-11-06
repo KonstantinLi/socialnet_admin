@@ -37,12 +37,12 @@ public class PostService {
     }
 
     private List<PostRs> findPosts(FindPostRq findPostRq) throws TimeException {
-        return postToPostRs(postSearchExecutor.findPosts(findPostRq)).stream()
+        return postListToPostRsList(postSearchExecutor.findPosts(findPostRq)).stream()
                 .sorted(Comparator.comparing(PostRs::getTime).reversed())
                 .toList();
     }
 
-    private List<PostRs> postToPostRs(List<Post> posts) {
+    private List<PostRs> postListToPostRsList(List<Post> posts) {
         return posts.stream().map(postMapper::postToPostRs).toList();
     }
 }

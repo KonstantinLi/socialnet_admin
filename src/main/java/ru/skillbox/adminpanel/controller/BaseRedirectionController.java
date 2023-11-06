@@ -13,7 +13,7 @@ public class BaseRedirectionController {
     private final JwtTokenUtils jwtTokenUtils;
 
     @GetMapping("/")
-    public String redirect(@CookieValue(name = "jwtToken", required = false) String token) {
+    public String rootRedirection(@CookieValue(name = "jwtToken", required = false) String token) {
         if (token == null || token.isEmpty()) {
             return "redirect:admin-console/login";
         }
@@ -23,5 +23,10 @@ public class BaseRedirectionController {
         }
 
         return "redirect:admin-console/login";
+    }
+
+    @GetMapping("/admin-console")
+    public String adminConsoleRedirection(@CookieValue(name = "jwtToken", required = false) String token) {
+        return rootRedirection(token);
     }
 }

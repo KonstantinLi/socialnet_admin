@@ -7,15 +7,13 @@ import ru.skillbox.adminpanel.entity.Post;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.springframework.data.jpa.domain.Specification.where;
-
 public class PostSearchSpecification {
 
     public static Specification<Post> textLike(String text) {
         return (root, query, cb) ->
                 cb.or(
-                cb.like(cb.lower(root.get("postText")), "%" + text.toLowerCase() + "%"),
-                cb.like(cb.lower(root.get("title")), "%" + text.toLowerCase() + "%"));
+                        cb.like(cb.lower(root.get("postText")), "%" + text.toLowerCase() + "%"),
+                        cb.like(cb.lower(root.get("title")), "%" + text.toLowerCase() + "%"));
     }
 
     public static Specification<Post> datesBetween(LocalDateTime dateFrom, LocalDateTime dateTo) {

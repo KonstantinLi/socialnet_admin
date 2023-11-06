@@ -32,7 +32,7 @@ public class PostSearchExecutor {
                     LocalDateTime.now()));
         }
         if (postRq.getAuthor() != null && !postRq.getAuthor().isBlank()) {
-            List<Person> persons = findPersonByNameAndLastNameContains(postRq.getAuthor());
+            List<Person> persons = personRepository.findPersonByNameAndLastNameContains(postRq.getAuthor());
             specification = specification.and(postAuthorsIs(persons));
         }
         if (postRq.getStatus() != null && !postRq.getStatus().equals("all")) {
@@ -48,21 +48,5 @@ public class PostSearchExecutor {
             case "year" -> LocalDateTime.now().minusYears(1);
             default -> throw new TimeException("Error in field 'time'");
         };
-    }
-
-    public List<Person> findPersonByNameAndLastNameContains(String name) {
-        List<Person> persons = null;
-        String[] splitName = name.split("\\s+");
-        if (splitName.length < 2) {
-            persons = personRepository.findByFirstNameContainsIgnoreCaseOrLastNameContainsIgnoreCase(name, name);
-        }
-        if (splitName.length > 1) {
-            persons = personRepository.findPersonByFirstNameContainsIgnoreCaseAndLastNameContainsIgnoreCase(splitName[0], splitName[1]);
-        }
-        assert persons != null;
-        if (persons.isEmpty() && splitName.length > 1) {
-            persons = personRepository.findPersonByFirstNameContainsIgnoreCaseAndLastNameContainsIgnoreCase(splitName[1], splitName[0]);
-        }
-        return persons;
     }
 }

@@ -14,7 +14,7 @@ import ru.skillbox.adminpanel.entity.PostComment;
 )
 public interface CommentMapper {
     @Mapping(target = "postId", source = "post.id")
-    CommentRs postCommentToCommentRs(PostComment postComment);
+    CommentRs toCommentRs(PostComment postComment);
 
     //TODO delete unused method?
     /*@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
