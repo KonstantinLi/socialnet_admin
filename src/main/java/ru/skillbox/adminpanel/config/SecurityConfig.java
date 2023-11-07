@@ -38,9 +38,9 @@ public class SecurityConfig {
                 .cors()
                 .and()
                 .authorizeHttpRequests(registry ->
-                        registry.requestMatchers("/api/v1/admin-console/login").permitAll()
-                                .requestMatchers("/api/v1/admin-console/**")
-                                .hasRole("ADMIN")
+                        registry.requestMatchers("/admin-console/login").permitAll()
+                                .requestMatchers("/admin-console/**")
+                                .authenticated()
                                 .anyRequest().permitAll())
                 .sessionManagement(manager ->
                         manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

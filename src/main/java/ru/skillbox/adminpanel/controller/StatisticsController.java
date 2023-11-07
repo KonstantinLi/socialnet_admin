@@ -3,10 +3,7 @@ package ru.skillbox.adminpanel.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.skillbox.adminpanel.annotation.Info;
 import ru.skillbox.adminpanel.dto.response.CurrentUserInfoRs;
 import ru.skillbox.adminpanel.service.StatisticsService;
@@ -24,8 +21,10 @@ public class StatisticsController {
         return statisticsService.getCurrentUser(token);
     }
 
+    //TODO remove authorization header?
     @GetMapping("/statistics")
-    public String getStatistic(Model model) {
+    public String getStatistic(@RequestHeader("Authorization") String token,
+                               Model model) {
         return statisticsService.buildStatisticPage(model);
     }
 }

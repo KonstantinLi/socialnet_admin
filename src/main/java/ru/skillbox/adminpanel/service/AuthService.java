@@ -3,6 +3,7 @@ package ru.skillbox.adminpanel.service;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ru.skillbox.adminpanel.dto.request.LoginRq;
 import ru.skillbox.adminpanel.entity.Admin;
@@ -22,7 +23,7 @@ public class AuthService {
     private final AdminRepository adminRepository;
 
     public void login(LoginRq loginRq, HttpServletResponse response) {
-        Admin admin = adminRepository.findByAdminLogin(loginRq.getEmail()).orElseThrow(
+        Admin admin = adminRepository.findByAdminLoginIgnoreCase(loginRq.getEmail()).orElseThrow(
                 () -> new AuthException("Пользователь не найден"));
 
         String password = getDecodedPassword(admin.getPassword());
@@ -39,6 +40,14 @@ public class AuthService {
     public String getDecodedPassword(String password) {
         byte[] decodedBytes = Base64.getDecoder().decode(password);
         return new String(decodedBytes);
+    }
+
+    public void logout(HttpServletResponse response) {
+        SecurityContextHolder.clearContext();
+        Cookie emptyJwt = new Cookie("jwtToken", null);
+        emptyJwt.setPath("/");
+        emptyJwt.setMaxAge(0);
+        response.addCookie(emptyJwt);
     }
 
     private String getToken(Admin admin) {

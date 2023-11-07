@@ -7,7 +7,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import ru.skillbox.adminpanel.entity.Admin;
 import ru.skillbox.adminpanel.entity.Person;
+import ru.skillbox.adminpanel.entity.Role;
+import ru.skillbox.adminpanel.repository.AdminRepository;
 import ru.skillbox.adminpanel.repository.PersonRepository;
 
 import java.util.List;
@@ -16,22 +19,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final PersonRepository personRepository;
+    private final AdminRepository adminRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         try {
-            Person person = personRepository.findByEmail(email)
+            Admin admin = adminRepository.findByAdminLoginIgnoreCase(email)
                     .orElseThrow(() ->
                             new UsernameNotFoundException(String.format(
                                     "Пользователь с email %s не найден", email))
                     );
             return new User(
-                    person.getId() + "," + person.getEmail(),
-                    person.getPassword(),
-                    List.of(new SimpleGrantedAuthority("ROLE_USER"))
-            );
+                    admin.getId() + "," + admin.getAdminLogin(),
+                    admin.getPassword(),
+                    List.of(new SimpleGrantedAuthority(admin.getRole().name())
+            ));
         } catch (NumberFormatException ex) {
             throw new IllegalArgumentException("Переданное Id пользователя не является числом");
         }

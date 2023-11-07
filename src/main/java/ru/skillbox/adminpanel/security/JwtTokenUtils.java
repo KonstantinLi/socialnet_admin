@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import ru.skillbox.adminpanel.config.JwtProperties;
 import ru.skillbox.adminpanel.entity.Admin;
+import ru.skillbox.adminpanel.entity.Role;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ public class JwtTokenUtils {
 
         //TODO для админов надо бы другую роль, наверно?
         Map<String, Object> claims = new HashMap<>();
-        claims.put("roles", List.of("ROLE_USER"));
+        claims.put("roles", List.of(admin.getRole()));
 
         Date now = new Date();
         Date expired = new Date(now.getTime() + jwtProperties.getLifetime().toMillis());

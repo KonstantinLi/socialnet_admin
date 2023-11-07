@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <body>
 <div class="main-layout__sidebar" th:fragment="sidebar">
@@ -90,14 +91,16 @@
                 Комментарии
             </span>
         </a>
-        <a th:href="@{/admin-console/moderators}" th:class="'main-layout__link ' + ${moderators}">
-            <img src="/img/sidebar/admin/moderators.png" alt="Администраторы и модераторы">
-            <span>
-                Администраторы и модераторы
-            </span>
-        </a>
+        <span>
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin-console/admins}" th:class="'main-layout__link ' + ${moderators}">
+                <img src="/img/sidebar/admin/moderators.png" alt="Администраторы и модераторы">
+                <span>
+                    Администраторы и модераторы
+                </span>
+            </a>
+        </span>
     </nav>
-    <a th:href="@{/admin-console/exit}" class="main-layout__link">
+    <a th:href="@{/admin-console/logout}" class="main-layout__link">
         <div class="simple-svg-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" fill="none" class="simple-svg">
                 <path d="M4 2.5V1H12V12.5H4V11" stroke="white" stroke-opacity="0.4" stroke-width="0.8">
@@ -114,4 +117,4 @@
 </div>
 </body>
 
-</html>
+</>
