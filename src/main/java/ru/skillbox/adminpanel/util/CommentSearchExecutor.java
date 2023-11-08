@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import ru.skillbox.adminpanel.dto.request.FindCommentRq;
 import ru.skillbox.adminpanel.entity.Person;
 import ru.skillbox.adminpanel.entity.PostComment;
-import ru.skillbox.adminpanel.exception.TimeException;
+import ru.skillbox.adminpanel.exception.SearchPeriodParsingException;
 import ru.skillbox.adminpanel.repository.PersonRepository;
 import ru.skillbox.adminpanel.repository.PostCommentsRepository;
 
@@ -23,7 +23,7 @@ public class CommentSearchExecutor {
     private final PersonRepository personRepository;
 
 
-    public List<PostComment> findComments(FindCommentRq commentRq) throws TimeException {
+    public List<PostComment> findComments(FindCommentRq commentRq) throws SearchPeriodParsingException {
         Specification<PostComment> specification = getAll();
         if (commentRq.getText() != null && !commentRq.getText().isBlank()) {
             specification = specification.and(textLike(commentRq.getText()));
@@ -42,12 +42,12 @@ public class CommentSearchExecutor {
         return commentRepository.findAll(specification);
     }
 
-    private LocalDateTime getSecondDate(String time) throws TimeException {
+    private LocalDateTime getSecondDate(String time) throws SearchPeriodParsingException {
         return switch (time) {
             case "week" -> LocalDateTime.now().minusWeeks(1);
             case "month" -> LocalDateTime.now().minusMonths(1);
             case "year" -> LocalDateTime.now().minusYears(1);
-            default -> throw new TimeException("Error in field 'time'");
+            default -> throw new SearchPeriodParsingException("Error in field 'time'");
         };
     }
 }

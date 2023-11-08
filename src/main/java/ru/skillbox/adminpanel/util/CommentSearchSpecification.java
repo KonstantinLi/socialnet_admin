@@ -9,6 +9,10 @@ import java.util.List;
 
 public class CommentSearchSpecification {
 
+    private CommentSearchSpecification() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static Specification<PostComment> textLike(String text) {
         return (root, query, cb) ->
                 cb.like(cb.lower(root.get("commentText")), "%" + text.toLowerCase() + "%");

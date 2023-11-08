@@ -7,7 +7,7 @@ import ru.skillbox.adminpanel.dto.request.FindPostRq;
 import ru.skillbox.adminpanel.dto.response.PostRs;
 import ru.skillbox.adminpanel.entity.Post;
 import ru.skillbox.adminpanel.exception.PostNotFoundException;
-import ru.skillbox.adminpanel.exception.TimeException;
+import ru.skillbox.adminpanel.exception.SearchPeriodParsingException;
 import ru.skillbox.adminpanel.mapper.PostMapper;
 import ru.skillbox.adminpanel.repository.PostsRepository;
 import ru.skillbox.adminpanel.util.PostSearchExecutor;
@@ -23,7 +23,7 @@ public class PostService {
     private final PostSearchExecutor postSearchExecutor;
     private final PostsRepository postsRepository;
 
-    public String buildPostsPage(Model model, FindPostRq findPostRq) throws TimeException {
+    public String buildPostsPage(Model model, FindPostRq findPostRq) throws SearchPeriodParsingException {
         model.addAttribute("posts", "router-link-active");
         model.addAttribute("postsList", findPosts(findPostRq));
         return "posts";
@@ -36,7 +36,7 @@ public class PostService {
         postsRepository.save(post);
     }
 
-    private List<PostRs> findPosts(FindPostRq findPostRq) throws TimeException {
+    private List<PostRs> findPosts(FindPostRq findPostRq) throws SearchPeriodParsingException {
         return postListToPostRsList(postSearchExecutor.findPosts(findPostRq)).stream()
                 .sorted(Comparator.comparing(PostRs::getTime).reversed())
                 .toList();

@@ -1,7 +1,6 @@
 package ru.skillbox.adminpanel.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,17 +11,17 @@ import lombok.Setter;
 public class Admin {
 
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        @Column(name = "admin_login")
-        private String adminLogin;
+    @Column(name = "admin_login")
+    private String adminLogin;
 
-        @Column(name = "role")
-        @Enumerated(EnumType.STRING)
-        private Role role;
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-        @Column(name = "password")
-        private String password;
+    @Column(name = "password")
+    private String password;
 }

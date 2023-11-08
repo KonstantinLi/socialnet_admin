@@ -10,6 +10,7 @@ import java.util.Optional;
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Long> {
     List<Admin> findByAdminLoginNotIgnoreCase(String adminLogin);
+
     Optional<Admin> findByAdminLoginIgnoreCase(String email);
 
     @Override

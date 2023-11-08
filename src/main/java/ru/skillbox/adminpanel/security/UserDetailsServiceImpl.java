@@ -8,10 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.skillbox.adminpanel.entity.Admin;
-import ru.skillbox.adminpanel.entity.Person;
-import ru.skillbox.adminpanel.entity.Role;
 import ru.skillbox.adminpanel.repository.AdminRepository;
-import ru.skillbox.adminpanel.repository.PersonRepository;
 
 import java.util.List;
 

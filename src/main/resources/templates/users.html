@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
@@ -122,26 +123,17 @@
                             <div class="friends__list">
                                 <div class="friends-block" th:each="user : ${usersList}">
                                     <div class="friends-block__img">
-                                        <img th:src="${user.photo}">
+                                        <img th:src="${user.photo}" alt="User photo">
                                     </div>
                                     <div class="friends-block__info">
                                         <a th:href="@{${@environment.getProperty('main-app.profile-url')} + ${user.id}}"
                                            class="friends-block__name"
                                            th:text="${user.firstName + ' ' + user.lastName}">
                                         </a>
-                                        <!--<span th:if="${user.city == null && user.country == null && user.age == null}"
-                                              class="friends-block__age-city">
-                                            Профиль не заполнен
-                                        </span>
-                                        <span th:if="${user.city != null || user.country != null || user.age != null}"
-                                              class="friends-block__age-city"
-                                              th:text="${(user.city != null ? user.city + (user.country != null || user.age != null ? ', ' : '') : '') +
-                                        (user.country != null ? user.country + (user.age != null ? ', ' : '') : '') +
-                                        (user.age != null ? 'Возраст: ' + user.age : '')}">
-                                        </span>-->
                                     </div>
                                     <div class="friends-block__actions">
-                                        <form th:action="${'/admin-console/users/block_unblock/' + user.id}" method="post">
+                                        <form th:action="${'/admin-console/users/block_unblock/' + user.id}"
+                                              method="post">
                                             <button type="submit" class="friends-block__actions-block has-tooltip"
                                                     data-original-title="null">
                                                 <div class="simple-svg-wrapper">

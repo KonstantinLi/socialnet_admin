@@ -1,11 +1,8 @@
 package ru.skillbox.adminpanel.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 import ru.skillbox.adminpanel.dto.request.AddAdminRq;
 import ru.skillbox.adminpanel.dto.response.AdminRs;
 import ru.skillbox.adminpanel.dto.response.CurrentUserInfoRs;

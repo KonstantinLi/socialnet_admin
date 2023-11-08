@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import ru.skillbox.adminpanel.dto.request.FindPostRq;
 import ru.skillbox.adminpanel.entity.Person;
 import ru.skillbox.adminpanel.entity.Post;
-import ru.skillbox.adminpanel.exception.TimeException;
+import ru.skillbox.adminpanel.exception.SearchPeriodParsingException;
 import ru.skillbox.adminpanel.repository.PersonRepository;
 import ru.skillbox.adminpanel.repository.PostsRepository;
 
@@ -22,7 +22,7 @@ public class PostSearchExecutor {
     private final PostsRepository postsRepository;
     private final PersonRepository personRepository;
 
-    public List<Post> findPosts(FindPostRq postRq) throws TimeException {
+    public List<Post> findPosts(FindPostRq postRq) throws SearchPeriodParsingException {
         Specification<Post> specification = getAll();
         if (postRq.getText() != null && !postRq.getText().isBlank()) {
             specification = specification.and(textLike(postRq.getText()));
@@ -41,12 +41,12 @@ public class PostSearchExecutor {
         return postsRepository.findAll(specification);
     }
 
-    private LocalDateTime getSecondDate(String time) throws TimeException {
+    private LocalDateTime getSecondDate(String time) throws SearchPeriodParsingException {
         return switch (time) {
             case "week" -> LocalDateTime.now().minusWeeks(1);
             case "month" -> LocalDateTime.now().minusMonths(1);
             case "year" -> LocalDateTime.now().minusYears(1);
-            default -> throw new TimeException("Error in field 'time'");
+            default -> throw new SearchPeriodParsingException("Can't parse time period");
         };
     }
 }

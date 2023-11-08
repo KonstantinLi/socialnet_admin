@@ -9,6 +9,10 @@ import java.util.List;
 
 public class PostSearchSpecification {
 
+    private PostSearchSpecification() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static Specification<Post> textLike(String text) {
         return (root, query, cb) ->
                 cb.or(
@@ -22,10 +26,6 @@ public class PostSearchSpecification {
 
     public static Specification<Post> postAuthorsIs(List<Person> authors) {
         return (root, query, cb) -> cb.in(root.get("author")).value(authors);
-    }
-
-    public static Specification<Post> excludeBlockedPosts(List<Person> personsWhoBLockedMe) {
-        return (root, query, cb) -> cb.in(root.get("author")).value(personsWhoBLockedMe).not();
     }
 
     public static Specification<Post> blockOrUnblock(String block) {

@@ -57,12 +57,9 @@
                             </div>
                             <div class="friends__list">
                                 <div class="friends-block" th:each="admin : ${adminsList}">
-                                    <!--<div class="friends-block__img">
-                                        <img th:src="${user.photo}">
-                                    </div>-->
                                     <div class="friends-block__info">
                                         <span class="friends-block__name"
-                                           th:text="${admin.adminLogin}">
+                                              th:text="${admin.adminLogin}">
                                         </span>
                                         <span class="friends-block__age-city"
                                               th:text="${#strings.equals(admin.role, 'MODER') ? 'модератор' : 'администратор'}">
