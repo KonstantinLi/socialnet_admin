@@ -7,7 +7,6 @@ import ru.skillbox.adminpanel.dto.response.PersonRs;
 import ru.skillbox.adminpanel.entity.Person;
 
 
-@SuppressWarnings("Annotator")
 @Mapper(
         componentModel = MappingConstants.ComponentModel.SPRING
 )
