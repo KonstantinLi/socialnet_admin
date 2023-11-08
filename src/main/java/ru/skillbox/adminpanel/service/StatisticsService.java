@@ -42,8 +42,7 @@ public class StatisticsService {
 
         Optional<Admin> admin = adminRepository.findByAdminLoginIgnoreCase(name);
         if (admin.isPresent()) {
-            CurrentUserInfoRs currentUserInfoRs = adminMapper.toCurrentUserInfoRs(admin.get());
-            return currentUserInfoRs;
+            return adminMapper.toCurrentUserInfoRs(admin.get());
         } else {
             throw new AdminIdentificationException("Admin info not found");
         }

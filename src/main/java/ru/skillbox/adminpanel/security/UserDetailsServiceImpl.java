@@ -28,13 +28,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             Admin admin = adminRepository.findByAdminLoginIgnoreCase(email)
                     .orElseThrow(() ->
                             new UsernameNotFoundException(String.format(
-                                    "Пользователь с email %s не найден", email))
-                    );
-            return new User(
-                    admin.getId() + "," + admin.getAdminLogin(),
+                                    "Пользователь с email %s не найден", email)));
+
+            return new User(admin.getId() + "," + admin.getAdminLogin(),
                     admin.getPassword(),
-                    List.of(new SimpleGrantedAuthority(admin.getRole().name())
-            ));
+                    List.of(new SimpleGrantedAuthority("ROLE_" + admin.getRole().name())));
         } catch (NumberFormatException ex) {
             throw new IllegalArgumentException("Переданное Id пользователя не является числом");
         }

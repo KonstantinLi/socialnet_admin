@@ -24,7 +24,7 @@ public class JwtTokenUtils {
 
         //TODO для админов надо бы другую роль, наверно?
         Map<String, Object> claims = new HashMap<>();
-        claims.put("roles", List.of(admin.getRole()));
+        claims.put("roles", List.of("ROLE_USER"));
 
         Date now = new Date();
         Date expired = new Date(now.getTime() + jwtProperties.getLifetime().toMillis());

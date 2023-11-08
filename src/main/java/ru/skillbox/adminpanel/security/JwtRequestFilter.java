@@ -2,6 +2,7 @@ package ru.skillbox.adminpanel.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,14 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        String authJwt = request.getHeader("Authorization");
+        Cookie[] cookies = request.getCookies();
+
+        if (cookies == null || cookies.length == 0) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        String authJwt = cookies[0].getValue();
 
         if (authJwt == null || !jwtTokenUtils.validateAccessToken(authJwt)) {
             filterChain.doFilter(request, response);

@@ -8,8 +8,4 @@ public class CurrentUserInfoRs {
 
     private String name;
     private Role role;
-
-    public CurrentUserInfoRs(String name) {
-        this.name = name;
-    }
 }

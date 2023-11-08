@@ -21,10 +21,8 @@ public class StatisticsController {
         return statisticsService.getCurrentUser(token);
     }
 
-    //TODO remove authorization header?
     @GetMapping("/statistics")
-    public String getStatistic(@RequestHeader("Authorization") String token,
-                               Model model) {
+    public String getStatistic(Model model) {
         return statisticsService.buildStatisticPage(model);
     }
 }
