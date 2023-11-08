@@ -1,6 +1,7 @@
 package ru.skillbox.adminpanel.entity;
 
+@SuppressWarnings("unused")
 public enum LikeType {
-    POST,
-    COMMENT
+    Post,
+    Comment
 }

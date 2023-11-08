@@ -21,7 +21,6 @@ public class JwtTokenUtils {
 
     public String generateToken(Admin admin) {
 
-        //TODO для админов надо бы другую роль, наверно?
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", List.of("ROLE_USER"));
 
@@ -70,17 +69,8 @@ public class JwtTokenUtils {
         return getClaims(token).getSubject();
     }
 
-    public Long getId(String token) {
-        return Long.parseLong(getSubject(token).split(",")[0]);
-    }
-
-    public String getEmail(String token) {
-        return getSubject(token).split(",")[1];
-    }
-
-    //TODO Сонар жалуется, но я не понимаю как исправить
+    @SuppressWarnings("unchecked")
     public List<String> getRoles(String token) {
-
         return getClaims(token).get("roles", List.class);
     }
 }

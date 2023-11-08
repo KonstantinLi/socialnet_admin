@@ -12,8 +12,8 @@ public class BaseRedirectionController {
 
     private final JwtTokenUtils jwtTokenUtils;
 
-    @GetMapping("/")
-    public String redirect(@CookieValue(name = "jwtToken", required = false) String token) {
+    @GetMapping("/*")
+    public String rootRedirection(@CookieValue(name = "jwtToken", required = false) String token) {
         if (token == null || token.isEmpty()) {
             return "redirect:admin-console/login";
         }

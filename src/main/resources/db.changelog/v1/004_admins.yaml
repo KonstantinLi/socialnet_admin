@@ -1,18 +1,18 @@
 databaseChangeLog:
   - changeSet:
-      id:  004_admins
-      author:  Aldungarov.AR
+      id: 004_admins
+      author: Aldungarov.AR
       changes:
-        -  sql:
-             sql:
-               drop table if exists admins cascade;
-
-               create table admins (
-                id bigserial not null,
-                admin_login varchar(255) not null,
-                role varchar(255) not null,
-                password varchar(255) not null,
-                primary key (id)
-               );
-             
+        - sql:
+            sql:
+              drop table if exists admins cascade;
+              
+              create table admins (
+              id bigserial not null,
+              admin_login varchar(255) not null,
+              role varchar(255) not null,
+              password varchar(255) not null,
+              primary key (id)
+              );
+              
               insert into admins (admin_login, role, password) values ('shepardcmndr@gmail.com', 'ADMIN', 'MSFnNmswZjQ=');

@@ -3,6 +3,7 @@ package ru.skillbox.adminpanel.controller;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,5 +35,11 @@ public class AuthController {
 
         authService.login(loginRq, response);
         return "redirect:statistics";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletResponse response, Model model) {
+        authService.logout(response);
+        return "redirect:/";
     }
 }

@@ -1,13 +1,11 @@
 package ru.skillbox.adminpanel.dto.response;
 
 import lombok.Data;
+import ru.skillbox.adminpanel.entity.Role;
 
 @Data
 public class CurrentUserInfoRs {
 
     private String name;
-
-    public CurrentUserInfoRs(String name) {
-        this.name = name;
-    }
+    private Role role;
 }

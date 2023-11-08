@@ -6,16 +6,11 @@ import ru.skillbox.adminpanel.entity.Role;
 
 @Data
 @Builder
-public class ModeratorsRs {
+public class AdminRs {
 
     private Long id;
 
-    private String firstName;
-
-    private String lastName;
-
-    private String photo;
+    private String adminLogin;
 
     private Role role;
-
 }
