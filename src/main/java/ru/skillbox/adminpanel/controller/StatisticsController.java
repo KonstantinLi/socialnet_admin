@@ -20,7 +20,7 @@ public class StatisticsController {
     private final StatisticsService statisticsService;
 
     @ModelAttribute("CurrentUserInfo")
-    public CurrentUserInfoRs currentUserInfoRs(@CookieValue(name = "jwtToken") String token) {
+    public CurrentUserInfoRs getCurrentUserInfoRs(@CookieValue(name = "jwtToken") String token) {
         return statisticsService.getCurrentUser(token);
     }
 
