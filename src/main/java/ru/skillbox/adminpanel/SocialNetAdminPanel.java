@@ -10,7 +10,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @ConfigurationPropertiesScan
-//@EnableScheduling
 @Configuration
 @EnableAspectJAutoProxy
 public class SocialNetAdminPanel {
