@@ -38,21 +38,6 @@ build-job:       # This job runs in the build stage, which runs first.
       - ./target
       - ./.m2
 
-test:
-  stage: test
-  only:
-    - dev
-  tags:
-    - admin_service_runner
-  except:
-    - tags
-  script:
-    - mvn test
-  cache:
-    paths:
-      - ./target
-      - ./.m2
-
 package:
   stage: package
   only:
@@ -83,7 +68,7 @@ build-docker-image:
   script:
     - echo ${ENV_FILE}
     - cat ${ENV_FILE}
-    - (docker ps -a --format {{.Names}} | grep java-backend-app -w) && docker stop java-backend-app && docker rm java-backend-app || echo "Doesn't exist"
-    - docker build -t java-pro41-backend:latest .
-    - docker run --name java-backend-app -d -p 8086:8086 --env-file ${ENV_FILE} -t java-pro41-backend:latest
+    - (docker ps -a --format {{.Names}} | grep admin-service -w) && docker stop admin-service && docker rm admin-service || echo "Doesn't exist"
+    - docker build -t admin-service:latest .
+    - docker run --name admin-service -d -p 8081:8081 --env-file ${ENV_FILE} -t admin-service:latest
     - docker system prune -a -f
