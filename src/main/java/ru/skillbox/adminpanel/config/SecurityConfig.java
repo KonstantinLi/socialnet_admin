@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests(registry ->
                         registry.requestMatchers("/admin-console/login").permitAll()
+                                .requestMatchers("/admin-console/logout").permitAll()
                                 .requestMatchers("/admin-console/**")
                                 .authenticated()
                                 .anyRequest().permitAll())

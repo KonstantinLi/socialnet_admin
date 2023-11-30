@@ -32,9 +32,10 @@ public class AuthService {
             throw new AuthException("Неверный пароль");
         }
 
-        Cookie jwtToken = new Cookie("jwtToken", getToken(admin));
-        jwtToken.setPath("/");
-        response.addCookie(jwtToken);
+        Cookie tokenCookie = new Cookie("jwtToken", getToken(admin));
+        tokenCookie.setPath("/");
+
+        response.addCookie(tokenCookie);
     }
 
     public String getDecodedPassword(String password) {
@@ -43,11 +44,11 @@ public class AuthService {
     }
 
     public void logout(HttpServletResponse response) {
-        SecurityContextHolder.clearContext();
         Cookie emptyJwt = new Cookie("jwtToken", null);
         emptyJwt.setPath("/");
         emptyJwt.setMaxAge(0);
         response.addCookie(emptyJwt);
+        SecurityContextHolder.clearContext();
     }
 
     private String getToken(Admin admin) {
