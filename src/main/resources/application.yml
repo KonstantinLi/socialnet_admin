@@ -24,12 +24,6 @@ spring:
     open-in-view: false
     show-sql: true
 
-  #TODO probably liquibase is not needed
-  liquibase:
-    enabled: true
-    drop-first: false
-    change-log: classpath:db.changelog/socialnet_changelog.xml
-
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
